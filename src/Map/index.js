@@ -44,12 +44,16 @@ export default function App() {
         map.current.on('moveend', () => {
             console.log(`lat: ${lat}, lng: ${lng}`);
 
-            map.addSource('stoneyroute', {
+            map.current.addSource('stoney-route', {
                 type: 'geojson',
                 data: Route
             });
 
-            map.addLayer({
+            map.current.addLayer({
+                'id': 'stoney-route',
+                'type': 'line',
+                'source': 'stoney-route',
+
 
             })
 
