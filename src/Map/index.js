@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
+import Route from '../Data/Routes/Stoney_Dude_Fuel_EX_9_8_.json'
+
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -23,13 +25,38 @@ export default function App() {
             zoom: zoom
         });
         const mapScope = map.current;
-        mapScope.addControl(
-            new MapboxGeocoder({
-                // flyTo: false,
-                accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl
+
+        const geocoder = new MapboxGeocoder({
+            // flyTo: false,
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+            marker: {
+                color: 'orange'
+            }
+        });
+
+        mapScope.addControl(geocoder);
+
+        geocoder.on('results', function (results) {
+            //console.log(results);
+        });
+
+        map.current.on('moveend', () => {
+            console.log(`lat: ${lat}, lng: ${lng}`);
+
+            map.addSource('stoneyroute', {
+                type: 'geojson',
+                data: Route
+            });
+
+            map.addLayer({
+
             })
-        )
+
+        });
+
+
+
     });
 
     useEffect(() => {
@@ -38,9 +65,10 @@ export default function App() {
             setLng(map.current.getCenter().lng.toFixed(4));
             setLat(map.current.getCenter().lat.toFixed(4));
             setZoom(map.current.getZoom().toFixed(2));
-        });
-    });
 
+        });
+
+    });
 
     return (
         <div>
