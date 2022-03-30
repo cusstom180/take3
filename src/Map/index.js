@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl, { Source, Layer } from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl, { Marker, Source, Layer } from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 

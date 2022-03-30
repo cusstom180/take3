@@ -1,0 +1,19 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "Title": "Stony Creek Metropark Mountain Bike Trails",
+                "Description": "A little something of all"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -83.10626149177551,
+                    42.72995221223127
+                ]
+            }
+        }
+    ]
+}
